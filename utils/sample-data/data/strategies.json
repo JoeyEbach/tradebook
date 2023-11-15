@@ -1,0 +1,61 @@
+{
+  "-Nj35U1OZiiF4xmbrMlQ": { 
+    "firebaseKey": "-Nj35U1OZiiF4xmbrMlQ", 
+    "name": "Daily Break Outs", 
+    "date": "11/25/2022", 
+    "goalType": "Profit Based", 
+    "goal": "50% profit on my investment", 
+    "favorite": false, 
+    "uid": "vomVoapuu4XhhmkJYrIqjG67NaP2" 
+  },
+
+  "-Nj35U1PhE9D9PXBMLdS": { 
+    "firebaseKey": "-Nj35U1PhE9D9PXBMLdS", 
+    "name": "ICT", 
+    "date": "7/2/2023", 
+    "goalType": "Time Based", 
+    "goal": "Hone this strategy", 
+    "favorite": true, 
+    "uid": "vomVoapuu4XhhmkJYrIqjG67NaP2" 
+  },
+
+  "-Nj35U1QYcnMV91tFw3m": { 
+    "firebaseKey": "-Nj35U1QYcnMV91tFw3m", 
+    "name": "4hr Trend Breaks", 
+    "date": "9/24/2023", 
+    "goalType": "Time Based", 
+    "goal": "Build my trading account", 
+    "favorite": true, 
+    "uid": "vomVoapuu4XhhmkJYrIqjG67NaP2" 
+  },
+
+  "-Nj35U1RTJ1I36xX3yrF": { 
+    "firebaseKey": "-Nj35U1RTJ1I36xX3yrF", 
+    "name": "Daily Break Outs", 
+    "date": "2/22/2023", 
+    "goalType": "Time Based", 
+    "goal": "Hone this strategy", 
+    "favorite": true, 
+    "uid": "vomVoapuu4XhhmkJYrIqjG67NaP2" 
+  },
+
+  "-Nj35U1SrE82DXYAbs4g": { 
+    "firebaseKey": "-Nj35U1SrE82DXYAbs4g", 
+    "name": "5min Scalping", 
+    "date": "10/23/2023", 
+    "goalType": "Number of Trades", 
+    "goal": "Build my trading account", 
+    "favorite": false, 
+    "uid": "vomVoapuu4XhhmkJYrIqjG67NaP2" 
+  },
+
+  "-Nj35U1Tb7MTs74azIl6": { 
+    "firebaseKey": "-Nj35U1Tb7MTs74azIl6", 
+    "name": "Turtle Soup", 
+    "date": "9/23/2023", 
+    "goalType": "Time Based", 
+    "goal": "100 trades", 
+    "favorite": false, 
+    "uid": "vomVoapuu4XhhmkJYrIqjG67NaP2" 
+  }
+}
