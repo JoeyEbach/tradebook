@@ -1,10 +1,10 @@
-import { deleteStrategy } from './strategies';
+import { deleteStrategy, viewStrategy } from './strategies';
 import {
   deleteTrade, deleteTradeImage, getTradeImages, getTradesByStrategyId, viewTrade,
 } from './trades';
 
 const getStrategyDetails = async (firebaseKey) => {
-  const strategy = await viewTrade(firebaseKey);
+  const strategy = await viewStrategy(firebaseKey);
   const trades = await getTradesByStrategyId(firebaseKey);
 
   return { ...strategy, trades };
