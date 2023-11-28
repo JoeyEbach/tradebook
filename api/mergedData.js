@@ -19,9 +19,10 @@ const getTradeDetails = async (firebaseKey) => {
 
 const deleteStrategyTradeRelationship = (strategyId) => new Promise((resolve, reject) => {
   getTradesByStrategyId(strategyId).then((tradesArray) => {
+    const deleteTradeImages = tradesArray.map((item) => getTradeImages(item.firebaseKey).then((images) => images.map((image) => deleteTradeImage(image.firebaseKey))));
     const deleteTradePromises = tradesArray.map((trade) => deleteTrade(trade.firebaseKey));
 
-    Promise.all(deleteTradePromises).then(() => {
+    Promise.all(deleteTradeImages, deleteTradePromises).then(() => {
       deleteStrategy(strategyId).then(resolve);
     });
   }).catch((error) => reject(error));

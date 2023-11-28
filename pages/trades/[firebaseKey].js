@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button, NavLink } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { deleteTradeImagesRelationship, getTradeDetails } from '../../api/mergedData';
 import { viewStrategy } from '../../api/strategies';
 
@@ -15,7 +15,7 @@ export default function ViewTrade() {
   const getTrade = () => {
     getTradeDetails(firebaseKey)?.then((obj) => {
       setTradeDetails(obj);
-      viewStrategy(obj.strategyId).then(setStrategy);
+      viewStrategy(obj.strategyId)?.then(setStrategy);
     });
   };
 
@@ -27,14 +27,14 @@ export default function ViewTrade() {
 
   useEffect(() => {
     getTrade();
-  }, []);
+  }, [firebaseKey]);
 
   return (
-    <div>
+    <div className="viewTradePg">
       <h1>Asset: {tradeDetails.asset} {tradeDetails.favorite ? '♥' : ''}</h1>
-      <NavLink href={`/strategies/${strategy.firebaseKey}`} passHref>
+      <Link href={`/strategies/${strategy.firebaseKey}`} passHref>
         <h3>Strategy: {strategy.name}</h3>
-      </NavLink>
+      </Link>
       <h5>Date: {tradeDetails.date}</h5>
       <h4>{tradeDetails.status}</h4>
       <h6>Entry: {tradeDetails.entry}</h6>
@@ -43,7 +43,7 @@ export default function ViewTrade() {
       <p>Notes: {tradeDetails.notes}</p>
 
       {tradeDetails.images?.map((image) => (
-        <img key={image.firebaseKey} src={image} alt={tradeDetails.asset} />
+        <img key={image.firebaseKey} src={image.image} alt={tradeDetails.asset} />
       ))}
       <Link href={`/trades/edit/${tradeDetails.firebaseKey}`} passHref>
         <Button variant="primary">Edit</Button>
