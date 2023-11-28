@@ -15,15 +15,17 @@ export default function Strategies() {
 
   useEffect(() => {
     getStrategyCards();
-  }, []);
+  }, [user, cards]);
 
   return (
-    <div>
-      <h1>All Strategies</h1>
+    <div className="strategyPg">
+      <div className="allStrategies">
+        <h1>All Strategies</h1>
+      </div>
       <Link href="/strategies/new" passHref>
-        <Button variant="dark">+ New Strategy</Button>
+        <Button className="stratBtn" variant="dark">+ New Strategy</Button>
       </Link>
-      <div>
+      <div className="stratCardList">
         {cards.map((strategy) => (
           <StrategyCard key={strategy.firebaseKey} strategyObj={strategy} />
         ))}

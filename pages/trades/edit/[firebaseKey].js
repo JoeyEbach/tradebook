@@ -9,7 +9,7 @@ export default function EditTrade() {
   const { firebaseKey } = router.query;
 
   useEffect(() => {
-    getTradeDetails(firebaseKey).then(setEditItem);
+    getTradeDetails(firebaseKey)?.then(setEditItem);
   }, [firebaseKey]);
 
   return (<TradeForm tradeObj={editItem} />);

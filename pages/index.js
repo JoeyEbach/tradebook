@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
+      className="home text-center d-flex flex-column justify-content-center align-content-center"
       style={{
         height: '90vh',
         padding: '30px',
@@ -16,7 +16,7 @@ function Home() {
       }}
     >
       <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to logout!</p>
+      <p>Welcome back to tradebook!</p>
       <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
         Sign Out
       </Button>

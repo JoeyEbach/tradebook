@@ -45,8 +45,8 @@ function StrategyForm({ strategyObj }) {
   };
 
   return (
-    <>
-      <Form onSubmit={handleSubmit}>
+    <div className="stratFormCont">
+      <Form className="stratForm" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Strategy Name</Form.Label>
           <Form.Control
@@ -112,10 +112,10 @@ function StrategyForm({ strategyObj }) {
           />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Submit
+          {strategyObj.firebaseKey ? 'Update Strategy' : '+ New Strategy'}
         </Button>
       </Form>
-    </>
+    </div>
   );
 }
 

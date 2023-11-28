@@ -20,16 +20,16 @@ export default function ViewStrategy() {
 
   useEffect(() => {
     getStrategy();
-  }, [strategyDetails]);
+  }, [firebaseKey, strategyDetails]);
 
   return (
-    <div>
+    <div className="viewStratPg">
       <h1>{strategyDetails.name} {strategyDetails.favorite ? '♥' : ''}</h1>
       <p>Start Date: {strategyDetails.date}</p>
       <h3>Goal Type: {strategyDetails.goalType}</h3>
       <h6>Goal: {strategyDetails.goal}</h6>
-      <Link href="/trades/new" passHref>
-        <Button variant="dark">+ New Trade</Button>
+      <Link href={`/trades/new/${strategyDetails.firebaseKey}`} passHref>
+        <Button className="newTradeBtn" variant="dark">+ New Trade</Button>
       </Link>
       <p>Wins: {wins?.length ? `${wins.length}` : '0'} | Losses: {losses?.length ? `${losses.length}` : '0'}</p>
       <p>Trades Logged: {strategyDetails.trades?.length}</p>

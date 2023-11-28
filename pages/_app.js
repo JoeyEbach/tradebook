@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
 import '../styles/globals.css';
+import 'firebase/storage';
 import { AuthProvider } from '../utils/context/authContext';
 import ViewDirectorBasedOnUserAuthStatus from '../utils/ViewDirector';
 

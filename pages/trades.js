@@ -8,18 +8,18 @@ export default function Trades() {
   const { user } = useAuth();
 
   const getTradeCards = () => {
-    getTrades(user.uid).then(setCards);
+    getTrades(user.uid)?.then(setCards);
   };
 
   useEffect(() => {
     getTradeCards();
-  }, []);
+  }, [user, cards]);
 
   return (
-    <div>
+    <div className="tradesPg">
       <h1>All Trades</h1>
       <div>
-        {cards.map((trade) => (
+        {cards?.map((trade) => (
           <TradeCard key={trade.firebaseKey} tradeObj={trade} />
         ))}
       </div>
