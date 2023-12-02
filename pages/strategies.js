@@ -15,7 +15,7 @@ export default function Strategies() {
 
   useEffect(() => {
     getStrategyCards();
-  }, [user, cards]);
+  }, [user]);
 
   return (
     <div className="strategyPg">
