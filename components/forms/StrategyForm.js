@@ -4,8 +4,15 @@ import { useRouter } from 'next/router';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FloatingLabel } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSquareCheck, faSquareXmark, faPenToSquare, faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../utils/context/authContext';
 import { newStrategy, updateStrategy } from '../../api/strategies';
+import {
+  createRule, deleteARule, getRulesByStratId, getSingleRule, updateRule,
+} from '../../api/rules';
 
 const initialState = {
   name: '',
@@ -14,13 +21,26 @@ const initialState = {
   goal: '',
   favorite: false,
 };
+
+const ruleInitialState = {
+  rule: '',
+};
 function StrategyForm({ strategyObj }) {
   const [formInput, setFormInput] = useState(initialState);
+  const [newRules, setNewRules] = useState([]);
+  const [edit, setEdit] = useState(false);
+  const [rule, setRule] = useState(ruleInitialState);
+  const [strategyObjRules, setStrategyObjRules] = useState([]);
+  const [rulesInput, setRulesInput] = useState([]);
+  const [showBtn, setShowBtn] = useState(true);
   const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (strategyObj.firebaseKey) setFormInput(strategyObj);
+    if (strategyObj.firebaseKey) {
+      setFormInput(strategyObj);
+      getRulesByStratId(strategyObj.firebaseKey)?.then((rulesArray) => setStrategyObjRules(rulesArray));
+    }
   }, [strategyObj, user]);
 
   const handleChange = (e) => {
@@ -31,15 +51,93 @@ function StrategyForm({ strategyObj }) {
     }));
   };
 
+  const handleChangeRules = (e) => {
+    const { name, value } = e.target;
+    setRule((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  };
+
+  const addRuleClick = () => {
+    setRulesInput((prevState) => ([...prevState, 1]));
+    setShowBtn(false);
+  };
+
+  const handleSaveClick = async () => {
+    createRule(rule)?.then(({ name }) => {
+      const patchPayload = { firebaseKey: name };
+      updateRule(patchPayload)?.then(() => {
+        getSingleRule(name)?.then((obj) => setNewRules((prevState) => [...prevState, obj]));
+      });
+    });
+    setRule(ruleInitialState);
+    setShowBtn(true);
+    setRulesInput([]);
+  };
+
+  const handleEditClick = () => {
+    deleteARule(rule.firebaseKey)?.then(() => {
+      createRule(rule)?.then(({ name }) => {
+        const patchPayload = { firebaseKey: name };
+        updateRule(patchPayload);
+        getSingleRule(name)?.then((obj) => setNewRules((prevState) => [...prevState, obj]));
+      });
+    });
+    setRule(ruleInitialState);
+    setShowBtn(true);
+    setRulesInput([]);
+    setEdit(false);
+  };
+
+  const handleCancelClick = () => {
+    setRule(ruleInitialState);
+    setShowBtn(true);
+    setRulesInput([]);
+  };
+
+  const deleteRule = (type, fbKey) => {
+    deleteARule(fbKey);
+    if (type === 'old') {
+      const filterArray = strategyObjRules.filter((obj) => obj.firebaseKey !== fbKey);
+      setStrategyObjRules(filterArray);
+    } else {
+      const filterArray = newRules.filter((obj) => obj.firebaseKey !== fbKey);
+      setNewRules(filterArray);
+    }
+  };
+
+  const editARule = (type, fbKey) => {
+    getSingleRule(fbKey)?.then((item) => {
+      setRule(item);
+      setShowBtn(false);
+      setEdit(true);
+      setRulesInput((prevState) => ([...prevState, 1]));
+      if (type === 'old') {
+        const filterArray = strategyObjRules?.filter((obj) => obj.firebaseKey !== fbKey);
+        setStrategyObjRules(filterArray);
+      } else {
+        const filterArray = newRules?.filter((obj) => obj.firebaseKey !== fbKey);
+        setNewRules(filterArray);
+      }
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (strategyObj.firebaseKey) {
       updateStrategy(formInput).then(() => router.push(`/strategies/${strategyObj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
-      newStrategy(payload).then(({ name }) => {
+      newStrategy(payload)?.then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateStrategy(patchPayload).then(() => router.push(`/strategies/${name}`));
+        updateStrategy(patchPayload);
+
+        newRules?.map((item) => {
+          const updatePayload = ({ firebaseKey: item.firebaseKey, strategyId: name });
+          return updateRule(updatePayload);
+        });
+        router.push(`/strategies/${name}`);
       });
     }
   };
@@ -96,6 +194,53 @@ function StrategyForm({ strategyObj }) {
             onChange={handleChange}
           />
         </Form.Group>
+
+        {(newRules || strategyObjRules) && <p>Rules:</p>}
+        {strategyObjRules && strategyObjRules.map((item) => (
+          <>
+            <p>&#8226; {item.rule}</p>
+            {!edit && (
+              <>
+                <FontAwesomeIcon icon={faPenToSquare} onClick={() => { editARule('old', item.firebaseKey); }} style={{ color: '#8fc651', width: '25px' }} />
+                <FontAwesomeIcon icon={faTrash} onClick={() => { deleteRule('old', item.firebaseKey); }} style={{ color: '#8fc651', width: '25px' }} />
+              </>
+            )}
+          </>
+        ))}
+        {newRules && newRules.map((item) => (
+          <>
+            <p>&#8226; {item.rule}</p>
+            {!edit && (
+              <>
+                <FontAwesomeIcon icon={faPenToSquare} onClick={() => { editARule('new', item.firebaseKey); }} style={{ color: '#8fc651', width: '25px' }} />
+                <FontAwesomeIcon icon={faTrash} onClick={() => { deleteRule('new', item.firebaseKey); }} style={{ color: '#8fc651', width: '25px' }} />
+              </>
+            )}
+
+          </>
+        ))}
+
+        {rulesInput && rulesInput.map(() => (
+          <div>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control
+                type="text"
+                placeholder="Enter Your Rule"
+                name="rule"
+                value={rule.rule}
+                onChange={handleChangeRules}
+              />
+            </Form.Group>
+            {edit ? (<FontAwesomeIcon icon={faSquareCheck} onClick={handleEditClick} style={{ color: '#8fc651', width: '25px' }} />) : (<FontAwesomeIcon icon={faSquareCheck} onClick={handleSaveClick} style={{ color: '#8fc651', width: '25px' }} />)}
+            {!edit && (<FontAwesomeIcon icon={faSquareXmark} onClick={handleCancelClick} style={{ color: '#8fc651', width: '25px' }} />)}
+          </div>
+        ))}
+
+        {showBtn && (
+        <Button variant="primary" type="button" className="rounded-0" onClick={addRuleClick}>
+          Add A Rule
+        </Button>
+        )}
 
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
           <Form.Check

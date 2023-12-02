@@ -185,16 +185,57 @@ body {
   background-color: black;
   border: 2px solid #A1A3A1;
   margin-bottom: 35px;
+  height: 183px;
+  padding: 0px;
 }
 
 .tradeCard header {
   border: 2px solid #A1A3A1;
 }
 
-.tradeCard img {
-  height: 150px;
-  width: 200px;
+.statusBar {
+  border: 2px solid #A1A3A1;
+  height: 175px;
   object-fit: cover;
+}
+
+.tradeCard img {
+  height: 181px;
+  border: 2px solid #A1A3A1;
+  object-fit: cover;
+  max-width: 100%;
+}
+
+.tradeCard p {
+  font-size: 16px;
+  font-family: 'Oswald', sans-serif;
+  line-height: 80%;
+  letter-spacing: 2px;
+}
+
+.tradeCard h3 {
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  line-height: 80%;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.tradeCardInfo {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+.tradeAsset {
+  margin-top: 50px;
+  margin-left: 65px;
+}
+
+.tradeIcons {
+  position: absolute;
+  right: 0px;
+  bottom: 15px;
+  max-width: 175px;
 }
 
 .strategyCard {

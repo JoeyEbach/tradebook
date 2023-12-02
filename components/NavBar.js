@@ -23,7 +23,7 @@ export default function NavBar() {
             <Link passHref href="/trades">
               <Nav.Link className="navLink">All Trades</Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>Sign Out</Button>
+            <Button variant="danger" className="rounded-0" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

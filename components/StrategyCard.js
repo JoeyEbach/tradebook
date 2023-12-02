@@ -29,7 +29,7 @@ function StrategyCard({ strategyObj }) {
 
   return (
     <div>
-      <Card className="strategyCard">
+      <Card className="strategyCard rounded-0">
         <Card.Body>
           {strategyObj.favorite ? <FontAwesomeIcon icon={faCrown} className="favIcon" /> : ''}
           <div className="stratCardCont">

@@ -133,6 +133,7 @@ function TradeForm({ tradeObj }) {
             name="asset"
             value={formInput.asset}
             onChange={handleChange}
+            className="rounded-0"
             required
           />
         </Form.Group>
@@ -145,6 +146,7 @@ function TradeForm({ tradeObj }) {
             name="date"
             value={formInput.date}
             onChange={handleChange}
+            className="rounded-0"
           />
         </Form.Group>
 
@@ -156,6 +158,7 @@ function TradeForm({ tradeObj }) {
             name="entry"
             value={formInput.entry}
             onChange={handleChange}
+            className="rounded-0"
           />
         </Form.Group>
 
@@ -167,6 +170,7 @@ function TradeForm({ tradeObj }) {
             name="target"
             value={formInput.target}
             onChange={handleChange}
+            className="rounded-0"
           />
         </Form.Group>
 
@@ -178,6 +182,7 @@ function TradeForm({ tradeObj }) {
             name="stop"
             value={formInput.stop}
             onChange={handleChange}
+            className="rounded-0"
           />
         </Form.Group>
 
@@ -186,7 +191,7 @@ function TradeForm({ tradeObj }) {
             aria-label="Trade Status"
             name="status"
             onChange={handleChange}
-            className="mb-3"
+            className="mb-3 rounded-0"
             value={formInput.status}
             required
           >
@@ -206,6 +211,7 @@ function TradeForm({ tradeObj }) {
             name="notes"
             value={formInput.notes}
             onChange={handleChange}
+            className="rounded-0"
           />
         </Form.Group>
 
@@ -213,7 +219,7 @@ function TradeForm({ tradeObj }) {
           className="modal show"
           style={{ display: 'block', position: 'initial' }}
         >
-          <Button variant="primary" onClick={handleShow}>
+          <Button variant="primary" className="rounded-0" onClick={handleShow}>
             {tradeObjImages ? 'Edit Images' : 'Add Images'}
           </Button>
           <div className="imgGlimpses">

@@ -15,7 +15,7 @@ export default function Strategies() {
 
   useEffect(() => {
     getStrategyCards();
-  }, [user, cards]);
+  }, [user]);
 
   return (
     <div className="strategyPg">
@@ -23,7 +23,7 @@ export default function Strategies() {
         <h1>All Strategies</h1>
       </div>
       <Link href="/strategies/new" passHref>
-        <Button className="stratBtn" variant="dark">+ New Strategy</Button>
+        <Button className="stratBtn rounded-0" variant="dark">+ New Strategy</Button>
       </Link>
       <div className="stratCardList">
         {cards.map((strategy) => (
