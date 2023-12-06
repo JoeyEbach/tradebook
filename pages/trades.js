@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getTrades } from '../api/trades';
 import TradeCard from '../components/TradeCard';
@@ -16,13 +17,19 @@ export default function Trades() {
   }, [user, cards]);
 
   return (
-    <div className="tradesPg">
-      <h1>All Trades</h1>
-      <div>
-        {cards?.map((trade) => (
-          <TradeCard key={trade.firebaseKey} tradeObj={trade} />
-        ))}
-      </div>
+    <div className="tradesPage">
+      <Container className="tcHeader">
+        <div>
+          <h1>All Trades</h1>
+        </div>
+      </Container>
+      <Container className="tcList">
+        <div>
+          {cards?.map((trade) => (
+            <TradeCard key={trade.firebaseKey} tradeObj={trade} />
+          ))}
+        </div>
+      </Container>
     </div>
   );
 }
