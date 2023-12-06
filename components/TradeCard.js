@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
-  faEye, faPenToSquare, faTrash, faSquareFull, faCrown,
+  faEye, faPenToSquare, faTrash, faCrown,
 } from '@fortawesome/free-solid-svg-icons';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -34,19 +34,19 @@ function TradeCard({ tradeObj }) {
 
   return (
     <Container>
-
-      {tradeObj.favorite ? <FontAwesomeIcon icon={faCrown} className="favIcon" /> : ''}
       <Card className="tradeCard rounded-0">
+
+        <div className="status">
+          {tradeObj.status === 'Win' && <div className="statusBar" style={{ backgroundColor: '#8fc651' }} />}
+          {tradeObj.status === 'Loss' && <div className="statusBar" style={{ backgroundColor: '#ce4727' }} />}
+          {tradeObj.status === 'Break Even' && <div className="statusBar" style={{ backgroundColor: '#0097b2' }} />}
+          {tradeObj.status === 'Undecided' && <div className="statusBar" style={{ backgroundColor: '#858080' }} />}
+        </div>
         <Row>
-          <Col xs={1}>
-            {tradeObj.status === 'Win' && <FontAwesomeIcon icon={faSquareFull} className="statusBar" style={{ color: '#8fc651' }} />}
-            {tradeObj.status === 'Loss' && <FontAwesomeIcon icon={faSquareFull} className="statusBar" style={{ color: '#ce4727' }} />}
-            {tradeObj.status === 'Break Even' && <FontAwesomeIcon icon={faSquareFull} className="statusBar" style={{ color: '#0097b2' }} />}
-            {tradeObj.status === 'Undecided' && <FontAwesomeIcon icon={faSquareFull} className="statusBar" style={{ color: '#858080' }} />}
-          </Col>
           <Col xs={4}>
             <CardImg src={tradeImages && tradeImages[0]?.image} alt={tradeObj.asset} className="rounded-0" />
           </Col>
+          {tradeObj.favorite ? <FontAwesomeIcon icon={faCrown} className="fIcon" /> : ''}
           <Col xs={4}>
             <div className="tradeAsset">
               <h3>{tradeObj.asset}</h3>
@@ -60,14 +60,14 @@ function TradeCard({ tradeObj }) {
               <p>Stop: {tradeObj.stop}</p>
             </div>
           </Col>
-          <div className="tradeIcons">
+          <div className="icons">
             <Link href={`/trades/${tradeObj.firebaseKey}`} passHref>
               <FontAwesomeIcon icon={faEye} className="icon" />
             </Link>
             <Link href={`/trades/edit/${tradeObj.firebaseKey}`} passHref>
               <FontAwesomeIcon icon={faPenToSquare} className="icon" />
             </Link>
-            <FontAwesomeIcon icon={faTrash} onClick={deleteATrade} className="icon" />
+            <FontAwesomeIcon icon={faTrash} onClick={deleteATrade} className="icon delIcon" />
           </div>
         </Row>
 

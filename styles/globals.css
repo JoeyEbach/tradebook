@@ -19,7 +19,7 @@ a {
 }
 
 body {
-  background-color: black;
+  background-image: url('https://www.designyourway.net/diverse/darkpat/COLOURlovers.com-Gothic_Tablecloth.jpg')
 }
 
 .home {
@@ -46,9 +46,9 @@ body {
 
 .icons {
   position: absolute;
-  right: 25px;
+  right: 0px;
   top: 15px;
-  max-width: 300px;
+  max-width: 175px;
 }
 
 .snapShot {
@@ -74,7 +74,7 @@ body {
 }
 
 .navbar {
-  background-color: #423f3f;
+  background-color: #444747;
   height: 50px;
 }
 
@@ -98,23 +98,26 @@ body {
 }
 
 .allStrategies h1 {
-  position: absolute;
-  top: 110px;
-  left: 525px;
   font-size: 30px;
   font-family: 'Oswald', sans-serif;
   color: white;
   letter-spacing: 3px;
+  margin-left: 30px;
 }
+
+.sContainer {
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  margin-top: 65px;
+} 
 
 .stratBtn {
   background-color: #0097b2;
-  position: absolute;
-  top: 110px;
-  right: 600px;
   font-size: 16px;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 2px;
+  margin-left: 100px;
 }
 
 .favIcon {
@@ -123,6 +126,9 @@ body {
   height: 30px;
   object-fit: cover;
   margin-right: 25px;
+  position: absolute;
+  top: 10px;
+  left: 15px;
   :hover {
     color: yellow;
     width: 30px;
@@ -133,18 +139,21 @@ body {
 
 .stratHead h1 {
   color: white;
-  position: absolute;
-  bottom: 25px;
-  left: 30px;
   font-family: 'Roboto Condensed', sans-serif;
   font-style: extra-light;
+  font-size: 30px;
+  margin-top: 40px;
+  margin-left: 30px;
 }
 
 .stratCardList {
   width: 800px;
-  position: absolute;
-  top: 175px;
-  right: 600px
+}
+
+.sCardContainer {
+  display: flex;
+  justify-content: center;
+  max-width: 776px;
 }
 
 .viewStratPg {
@@ -153,10 +162,6 @@ body {
 
 .viewTradePg {
   color: #A1A3A1;
-}
-
-.viewTradePg h1 {
-  margin-top: 30px;
 }
 
 .viewTradePg img {
@@ -169,23 +174,21 @@ body {
   background-color: #8fc651;
 }
 
-.tradesPg h1{
-  color: #A1A3A1;
-  margin-top: 30px;
-  font-size: 30px;
-  margin-bottom: 30px;
-}
-
 .tradesPg {
   overflow-anchor: none;
 }
 
+.tradesPage {
+  margin-top: 65px;
+}
+
 .tradeCard {
   color: white;
-  background-color: black;
+  background-color: transparent;
   border: 2px solid #A1A3A1;
   margin-bottom: 35px;
-  height: 183px;
+  height: 150px;
+  width: 776px;
   padding: 0px;
 }
 
@@ -194,35 +197,72 @@ body {
 }
 
 .statusBar {
-  border: 2px solid #A1A3A1;
-  height: 175px;
-  object-fit: cover;
+  height: 142px;
+}
+
+.tcList {
+  display: flex;
+  justify-content: center;
+  max-width: 1800px;
+}
+
+.tcHeader {
+  max-width: 800px;
+  margin-top: 40px;
+}
+
+.tcListDiv {
+  width: 1750px;
+}
+
+.tcHeader h1 {
+  font-size: 30px;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  letter-spacing: 3px;
+  margin-left: 5px;
 }
 
 .tradeCard img {
-  height: 181px;
-  border: 2px solid #A1A3A1;
+  height: 146px;
+  width: 250px;
+  margin-left: 18px;
+  border: 2px solid black;
   object-fit: cover;
-  max-width: 100%;
+}
+
+.status {
+  width: 20px;
+  position: absolute;
+  left: 0px;
+  border: 2px solid black;
 }
 
 .tradeCard p {
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Oswald', sans-serif;
   line-height: 80%;
   letter-spacing: 2px;
 }
 
 .tradeCard h3 {
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-style: extra-light;
   line-height: 80%;
   letter-spacing: 2px;
-  font-weight: bold;
+  font-size: 16px;
+}
+
+.fIcon {
+  position: absolute;
+  top: 45px;
+  right: 65px;
+  color: #8fc651;
 }
 
 .tradeCardInfo {
-  margin-top: 50px;
+  margin-top: 65px;
   margin-left: 20px;
 }
 
@@ -240,22 +280,19 @@ body {
 
 .strategyCard {
   color: white;
-  background-color: black;
+  background-color: transparent;
   border: 2px solid #A1A3A1;
   margin-bottom: 35px;
-  height: 200px;
+  height: 150px;
 
 }
 
 .stratInfo {
-  position: absolute;
-  right: 50px;
-  bottom: 20px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Oswald', sans-serif;
   line-height: 80%;
   letter-spacing: 2px;
-  /* margin-top: 50px; */
+  margin-top: 40px;
 }
 
 .tradeFormCont {
@@ -288,11 +325,6 @@ body {
 
 .tradeForm Button {
   background-color: #8fc651;
-}
-
-.stratFormCont {
-  display: flex;
-  justify-content: center;
 }
 
 .stratForm {
@@ -335,4 +367,90 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   width: 400px;
+}
+
+.downloadBtn {
+  font-size: 14px;
+  font-family: 'Oswald', sans-serif;
+  border: 1.5px solid white;
+  color: #0097b2;
+  background-color: transparent;
+}
+
+.singleStratTrades {
+  max-width: 1800px;
+}
+
+.singleStratInfo {
+    background-color: #0097b2;
+    border: 1px solid white;
+    width: 800px;
+    height: 200px;
+    margin-top: 100px;
+    color: white;
+    font-size: 14px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.singleStratInfo h1 {
+  color: black;
+}
+
+.ssInfo {
+  margin-top: 20px;
+  margin-left: 35px;
+}
+
+.ssRules {
+  margin-top: 20px;
+}
+
+.dLoadBtn {
+  width: 800px;
+  margin-bottom: 15px;
+}
+
+.winLoss {
+  width: 800px;
+  font-size: 14px;
+  font-family: 'Oswald', sans-serif;
+  line-height: 80%;
+  letter-spacing: 2px;
+}
+
+.winLoss Col {
+  margin-top: 100px;
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+}
+
+.viewStratBtn {
+  display: flex;
+  justify-content: flex-end;
+  width: 824px;
+  margin-top: 30px;
+}
+
+.export {
+  background-color: #0097b2;
+  font-size: 16px;
+  font-family: 'Oswald', sans-serif;
+}
+
+.tableDiv {
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  margin-top: 100px;
+  background-color: transparent;
+}
+
+.tableDiv td {
+  font-size: 13px;
+}
+
+.tableDiv Button {
+  margin-bottom: 20px;
 }

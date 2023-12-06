@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+import {
+  Button, Col, Container,
+} from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getStrategies } from '../api/strategies';
 import StrategyCard from '../components/StrategyCard';
@@ -19,17 +21,25 @@ export default function Strategies() {
 
   return (
     <div className="strategyPg">
-      <div className="allStrategies">
-        <h1>All Strategies</h1>
-      </div>
-      <Link href="/strategies/new" passHref>
-        <Button className="stratBtn rounded-0" variant="dark">+ New Strategy</Button>
-      </Link>
-      <div className="stratCardList">
-        {cards.map((strategy) => (
-          <StrategyCard key={strategy.firebaseKey} strategyObj={strategy} />
-        ))}
-      </div>
+      <Container className="sContainer">
+        <Col>
+          <div className="allStrategies">
+            <h1>All Strategies</h1>
+          </div>
+        </Col>
+        <Col xs={4}>
+          <Link href="/strategies/new" passHref>
+            <Button className="stratBtn rounded-0" variant="dark">+ New Strategy</Button>
+          </Link>
+        </Col>
+      </Container>
+      <Container className="sCardContainer">
+        <div className="stratCardList">
+          {cards.map((strategy) => (
+            <StrategyCard key={strategy.firebaseKey} strategyObj={strategy} />
+          ))}
+        </div>
+      </Container>
     </div>
   );
 }

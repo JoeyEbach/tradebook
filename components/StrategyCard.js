@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faEye, faPenToSquare, faTrash, faCrown,
 } from '@fortawesome/free-solid-svg-icons';
+import { Col, Container, Row } from 'react-bootstrap';
 import { deleteStrategyTradeRelationship, getStrategyDetails } from '../api/mergedData';
 
 function StrategyCard({ strategyObj }) {
@@ -28,20 +29,22 @@ function StrategyCard({ strategyObj }) {
   }, [strategyObj]);
 
   return (
-    <div>
+    <Container>
       <Card className="strategyCard rounded-0">
-        <Card.Body>
-          {strategyObj.favorite ? <FontAwesomeIcon icon={faCrown} className="favIcon" /> : ''}
-          <div className="stratCardCont">
+        {strategyObj.favorite ? <FontAwesomeIcon icon={faCrown} className="favIcon" /> : ''}
+        <Row>
+          <Col xs={6}>
             <div className="stratHead">
               <h1>{strategyObj.name}</h1>
             </div>
+          </Col>
+          <Col xs={4}>
             <div className="stratInfo">
               <p>Date: {strategyObj.date}</p>
               <p>Goal Type: {strategyObj.goalType}</p>
               <p>Trades: {tradeNumber}</p>
             </div>
-          </div>
+          </Col>
           <div className="icons">
             <Link href={`/strategies/${strategyObj.firebaseKey}`} passHref>
               <FontAwesomeIcon icon={faEye} className="icon" />
@@ -51,9 +54,9 @@ function StrategyCard({ strategyObj }) {
             </Link>
             <FontAwesomeIcon icon={faTrash} onClick={deleteAStrategy} className="icon delIcon" />
           </div>
-        </Card.Body>
+        </Row>
       </Card>
-    </div>
+    </Container>
   );
 }
 
