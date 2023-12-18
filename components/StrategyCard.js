@@ -18,7 +18,8 @@ function StrategyCard({ strategyObj }) {
     getStrategyDetails(strategyObj.firebaseKey).then((obj) => setTradesNumber(obj.trades.length));
   };
 
-  const deleteAStrategy = () => {
+  const deleteAStrategy = (e) => {
+    e.stopPropagation();
     if (window.confirm(`Are you sure you want to delete ${strategyObj.name}?`)) {
       deleteStrategyTradeRelationship(strategyObj.firebaseKey);
     }
@@ -30,32 +31,34 @@ function StrategyCard({ strategyObj }) {
 
   return (
     <Container>
-      <Card className="strategyCard rounded-0">
-        {strategyObj.favorite ? <FontAwesomeIcon icon={faCrown} className="favIcon" /> : ''}
-        <Row>
-          <Col xs={6}>
-            <div className="stratHead">
-              <h1>{strategyObj.name}</h1>
+      <Link href={`/strategies/${strategyObj.firebaseKey}`} passHref>
+        <Card className="strategyCard rounded-0">
+          {strategyObj.favorite ? <FontAwesomeIcon icon={faCrown} className="favIcon" /> : ''}
+          <Row>
+            <Col xs={6}>
+              <div className="stratHead">
+                <h1>{strategyObj.name}</h1>
+              </div>
+            </Col>
+            <Col xs={4}>
+              <div className="stratInfo">
+                <p>Date: {strategyObj.date}</p>
+                <p>Goal Type: {strategyObj.goalType}</p>
+                <p>Trades: {tradeNumber}</p>
+              </div>
+            </Col>
+            <div className="icons">
+              <Link href={`/strategies/${strategyObj.firebaseKey}`} passHref>
+                <FontAwesomeIcon icon={faEye} className="icon" />
+              </Link>
+              <Link href={`/strategies/edit/${strategyObj.firebaseKey}`} passHref>
+                <FontAwesomeIcon icon={faPenToSquare} className="icon" />
+              </Link>
+              <FontAwesomeIcon icon={faTrash} onClick={deleteAStrategy} className="icon delIcon" />
             </div>
-          </Col>
-          <Col xs={4}>
-            <div className="stratInfo">
-              <p>Date: {strategyObj.date}</p>
-              <p>Goal Type: {strategyObj.goalType}</p>
-              <p>Trades: {tradeNumber}</p>
-            </div>
-          </Col>
-          <div className="icons">
-            <Link href={`/strategies/${strategyObj.firebaseKey}`} passHref>
-              <FontAwesomeIcon icon={faEye} className="icon" />
-            </Link>
-            <Link href={`/strategies/edit/${strategyObj.firebaseKey}`} passHref>
-              <FontAwesomeIcon icon={faPenToSquare} className="icon" />
-            </Link>
-            <FontAwesomeIcon icon={faTrash} onClick={deleteAStrategy} className="icon delIcon" />
-          </div>
-        </Row>
-      </Card>
+          </Row>
+        </Card>
+      </Link>
     </Container>
   );
 }

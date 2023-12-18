@@ -3,6 +3,8 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBar from '../components/NavBar';
+import CryptoTicker from '../components/CryptoTicker';
+import Footer from '../components/Footer';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -17,9 +19,11 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return (
       <>
         <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
+        <CryptoTicker />
         <div className="container">
           <Component {...pageProps} />
         </div>
+        <Footer />
       </>
     );
   }

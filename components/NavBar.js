@@ -5,6 +5,7 @@ import {
   Navbar, Container, Nav, Button,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import DarkMode from './DarkMode/DarkMode';
 
 export default function NavBar() {
   return (
@@ -23,6 +24,7 @@ export default function NavBar() {
             <Link passHref href="/trades">
               <Nav.Link className="navLink">All Trades</Nav.Link>
             </Link>
+            <DarkMode />
             <Button variant="danger" className="rounded-0" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>

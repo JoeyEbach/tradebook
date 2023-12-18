@@ -11,9 +11,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/app';
 import { FloatingLabel } from 'react-bootstrap';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { uuid } from 'uuidv4';
 import { useAuth } from '../../utils/context/authContext';
 import { newTrade, updateTrade } from '../../api/trades';
-import { clientCredentials } from '../../utils/client';
 import {
   deleteTradeImage, newTradeImage, updateTradeImage, viewTradeImage,
 } from '../../api/tradeImages';
@@ -41,8 +42,8 @@ function TradeForm({ tradeObj }) {
   const { user } = useAuth();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const endpoint = clientCredentials.storageBucket;
-  const storageRef = firebase.storage().ref(`${endpoint}/images`);
+
+  const storageRef = firebase.storage().ref(`/images.${uuid()}`);
 
   const fileUploadHandler = () => {
     if (!images) {
@@ -94,8 +95,8 @@ function TradeForm({ tradeObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (tradeObj.firebaseKey) {
-      const filteredFormInput = delete formInput.images;
-      updateTrade(filteredFormInput).then(() => {
+      delete formInput.images;
+      updateTrade(formInput).then(() => {
         if (uploadedImages) {
           uploadedImages.forEach((img) => {
             updateTradeImage({ firebaseKey: img.firebaseKey, tradeId: tradeObj.firebaseKey });
@@ -106,10 +107,13 @@ function TradeForm({ tradeObj }) {
       const payload = { ...formInput, uid: user.uid };
       newTrade(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateTrade(patchPayload);
-
-        uploadedImages.forEach((img) => {
-          updateTradeImage({ firebaseKey: img.firebaseKey, tradeId: name }).then(() => router.push(`/strategies/${formInput.strategyId}`));
+        updateTrade(patchPayload).then(() => {
+          if (uploadedImages) {
+            uploadedImages.forEach((img) => {
+              updateTradeImage({ firebaseKey: img.firebaseKey, tradeId: name });
+            });
+          }
+          router.push(`/strategies/${formInput.strategyId}`);
         });
       });
     }
@@ -138,15 +142,15 @@ function TradeForm({ tradeObj }) {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Date</Form.Label>
+        <Form.Group className="mb-3">
+          <Form.Label>Date: </Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Enter Date of Trade"
+            type="date"
+            id="start"
             name="date"
             value={formInput.date}
+            className="select rounded-0"
             onChange={handleChange}
-            className="rounded-0"
           />
         </Form.Group>
 
@@ -191,7 +195,7 @@ function TradeForm({ tradeObj }) {
             aria-label="Trade Status"
             name="status"
             onChange={handleChange}
-            className="mb-3 rounded-0"
+            className="select mb-3 rounded-0"
             value={formInput.status}
             required
           >
@@ -216,10 +220,10 @@ function TradeForm({ tradeObj }) {
         </Form.Group>
 
         <div
-          className="modal show"
+          className="modalShow"
           style={{ display: 'block', position: 'initial' }}
         >
-          <Button variant="primary" className="rounded-0" onClick={handleShow}>
+          <Button variant="primary" className="rounded-0 ruleBtn" style={{ backgroundColor: 'transparent' }} onClick={handleShow}>
             {tradeObjImages ? 'Edit Images' : 'Add Images'}
           </Button>
           <div className="imgGlimpses">
@@ -231,11 +235,11 @@ function TradeForm({ tradeObj }) {
             ))}
           </div>
 
-          <Modal show={show} onHide={handleClose}>
+          <Modal className="rounded-0" show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Add Your Trade Images</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="imgModal">
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Control
                   type="file"
@@ -314,7 +318,7 @@ function TradeForm({ tradeObj }) {
             }}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="tradeFormBtn rounded-0" variant="primary" type="submit">
           {tradeObj.firebaseKey ? 'Update Trade' : '+ New Trade'}
         </Button>
       </Form>
