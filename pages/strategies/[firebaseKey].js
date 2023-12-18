@@ -19,7 +19,7 @@ export default function ViewStrategy() {
   const getStrategy = () => {
     getStrategyDetails(firebaseKey)?.then((stratObj) => {
       setStrategyDetails(stratObj);
-      getRulesByStratId(stratObj.firebaseKey)?.then(setRules);
+      getRulesByStratId(firebaseKey)?.then(setRules);
     });
     setWins(strategyDetails.trades?.filter((item) => item.status === 'Win'));
     setLosses(strategyDetails.trades?.filter((strat) => strat.status === 'Loss'));
@@ -27,7 +27,7 @@ export default function ViewStrategy() {
 
   useEffect(() => {
     getStrategy();
-  }, [firebaseKey]);
+  }, [strategyDetails.trades]);
 
   return (
     <div className="viewStratPg">
@@ -41,7 +41,7 @@ export default function ViewStrategy() {
           </Col>
           <Col className="ssRules">
             {rules && <h5>Strategy Rules:</h5>}
-            {rules && rules.map((item) => <p>&#8226; {item.rule}</p>)}
+            {rules && rules.map((item) => <p key={rules.firebaseKey}>&#8226; {item.rule}</p>)}
           </Col>
         </Row>
       </Container>
@@ -70,7 +70,7 @@ export default function ViewStrategy() {
       </Container>
       <Container className="dLoadBtn">
         <Link href={`/strategies/table/${strategyDetails.firebaseKey}`} passHref>
-          <Button className="downloadBtn rounded-0" varian="dark">Download Trades</Button>
+          <Button className="downloadBtn rounded-0" variant="dark">Download Trades</Button>
         </Link>
       </Container>
       <Container className="tcList">

@@ -1,23 +1,28 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import {
+  Button, Col, Container, Row,
+} from 'react-bootstrap';
 import { signIn } from '../utils/auth';
 
 function Signin() {
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
-      </Button>
+    <div>
+      <Container className="welcome">
+        <Col>
+          <Row className="homeRow">
+            <h1 className="wel">Welcome to</h1>
+          </Row>
+          <Row className="homeRow">
+            <h2 className="tbName">tradebook</h2>
+          </Row>
+          <Row className="homeRow">
+            <p>Click the button below to login</p>
+            <Button type="button" size="lg" className="signBtn" onClick={signIn}>
+              Sign In
+            </Button>
+          </Row>
+        </Col>
+      </Container>
     </div>
   );
 }

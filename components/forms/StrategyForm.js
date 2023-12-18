@@ -126,7 +126,12 @@ function StrategyForm({ strategyObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (strategyObj.firebaseKey) {
-      updateStrategy(formInput).then(() => router.push(`/strategies/${strategyObj.firebaseKey}`));
+      updateStrategy(formInput).then(() => {
+        newRules?.map((item) => {
+          const updatePayload = ({ firebaseKey: item.firebaseKey, strategyId: strategyObj.firebaseKey });
+          return updateRule(updatePayload);
+        });
+      }).then(() => router.push(`/strategies/${strategyObj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid };
       newStrategy(payload)?.then(({ name }) => {
@@ -153,17 +158,19 @@ function StrategyForm({ strategyObj }) {
             name="name"
             value={formInput.name}
             onChange={handleChange}
+            className="rounded-0"
             required
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Date</Form.Label>
+        <Form.Group className="mb-3">
+          <Form.Label>Date: </Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Enter Start Date"
+            type="date"
+            id="start"
             name="date"
             value={formInput.date}
+            className="select rounded-0"
             onChange={handleChange}
           />
         </Form.Group>
@@ -173,7 +180,7 @@ function StrategyForm({ strategyObj }) {
             aria-label="Goal Type"
             name="goalType"
             onChange={handleChange}
-            className="mb-3"
+            className="mb-3 rounded-0"
             value={formInput.goalType}
             required
           >
@@ -190,6 +197,7 @@ function StrategyForm({ strategyObj }) {
             type="textarea"
             placeholder="Enter Your Goal"
             name="goal"
+            className="rounded-0"
             value={formInput.goal}
             onChange={handleChange}
           />
@@ -237,7 +245,7 @@ function StrategyForm({ strategyObj }) {
         ))}
 
         {showBtn && (
-        <Button variant="primary" type="button" className="rounded-0" onClick={addRuleClick}>
+        <Button variant="primary" type="button" className="rounded-0 ruleBtn" onClick={addRuleClick}>
           Add A Rule
         </Button>
         )}
@@ -256,7 +264,7 @@ function StrategyForm({ strategyObj }) {
             }}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="rounded-0 stratSubmit" variant="primary" type="submit">
           {strategyObj.firebaseKey ? 'Update Strategy' : '+ New Strategy'}
         </Button>
       </Form>

@@ -8,6 +8,16 @@ export default function Trades() {
   const [cards, setCards] = useState([]);
   const { user } = useAuth();
 
+  const selectedTheme = localStorage.getItem('selectedTheme');
+
+  if (selectedTheme === 'light') {
+    document.querySelector('body').setAttribute('data-theme', 'light');
+    localStorage.setItem('selectedTheme', 'light');
+  } else {
+    document.querySelector('body').setAttribute('data-theme', 'dark');
+    localStorage.setItem('selectedTheme', 'dark');
+  }
+
   const getTradeCards = () => {
     getTrades(user.uid)?.then(setCards);
   };
