@@ -22,7 +22,7 @@ export default function TradesTable() {
       setLosses(tradesArray?.filter((trade) => trade.status === 'Loss'));
       viewStrategy(firebaseKey)?.then(setStrategy);
     });
-  }, [trades, wins, losses]);
+  }, [firebaseKey]);
 
   return (
     <div className="tableDiv">
@@ -73,8 +73,8 @@ export default function TradesTable() {
           </tr>
         </thead>
         <tbody>
-          <td>{wins.length}</td>
-          <td>{losses.length}</td>
+          <td>{wins?.length}</td>
+          <td>{losses?.length}</td>
         </tbody>
       </Table>
     </div>

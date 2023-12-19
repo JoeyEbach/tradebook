@@ -7,7 +7,7 @@ import { useAuth } from '../utils/context/authContext';
 function Home() {
   const { user } = useAuth();
 
-  document.querySelector('body').setAttribute('data-theme', 'home');// localStorage.setItem('selectedTheme', 'dark')
+  document.querySelector('body').setAttribute('data-theme', 'home');
 
   return (
     <div

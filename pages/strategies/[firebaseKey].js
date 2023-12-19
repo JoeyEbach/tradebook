@@ -41,7 +41,7 @@ export default function ViewStrategy() {
           </Col>
           <Col className="ssRules">
             {rules && <h5>Strategy Rules:</h5>}
-            {rules && rules.map((item) => <p key={rules.firebaseKey}>&#8226; {item.rule}</p>)}
+            {rules && rules?.map((item) => <p key={rules.firebaseKey}>&#8226; {item.rule}</p>)}
           </Col>
         </Row>
       </Container>
