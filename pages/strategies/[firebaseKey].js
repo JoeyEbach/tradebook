@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -27,7 +28,7 @@ export default function ViewStrategy() {
 
   useEffect(() => {
     getStrategy();
-  }, [strategyDetails, firebaseKey]);
+  }, [strategyDetails]);
 
   return (
     <div className="viewStratPg">

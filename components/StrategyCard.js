@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
@@ -27,7 +28,7 @@ function StrategyCard({ strategyObj }) {
 
   useEffect(() => {
     numberOfTrades();
-  }, [strategyObj, tradeNumber]);
+  }, [strategyObj]);
 
   return (
     <Container>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
@@ -27,7 +28,7 @@ export default function Strategies() {
 
   useEffect(() => {
     getStrategyCards();
-  }, [cards, user.uid]);
+  }, [cards, user]);
 
   return (
     <>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
@@ -24,7 +25,7 @@ export default function Trades() {
 
   useEffect(() => {
     getTradeCards();
-  }, [user.uid, cards]);
+  }, [user, cards]);
 
   return (
     <div className="tradesPage">
