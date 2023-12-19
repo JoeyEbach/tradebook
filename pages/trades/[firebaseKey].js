@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -29,7 +30,7 @@ export default function ViewTrade() {
 
   useEffect(() => {
     getTrade();
-  }, [firebaseKey]);
+  }, [tradeDetails, firebaseKey]);
 
   return (
     <div className="viewTradePg">

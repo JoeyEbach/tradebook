@@ -5,6 +5,8 @@ import {
 import { signIn } from '../utils/auth';
 
 function Signin() {
+  document.querySelector('body').setAttribute('data-theme', 'home');
+
   return (
     <div>
       <Container className="welcome">

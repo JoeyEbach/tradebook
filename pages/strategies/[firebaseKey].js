@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -27,7 +28,7 @@ export default function ViewStrategy() {
 
   useEffect(() => {
     getStrategy();
-  }, [strategyDetails.trades]);
+  }, [strategyDetails]);
 
   return (
     <div className="viewStratPg">
@@ -41,7 +42,7 @@ export default function ViewStrategy() {
           </Col>
           <Col className="ssRules">
             {rules && <h5>Strategy Rules:</h5>}
-            {rules && rules.map((item) => <p key={rules.firebaseKey}>&#8226; {item.rule}</p>)}
+            {rules && rules?.map((item) => <p key={rules.firebaseKey}>&#8226; {item.rule}</p>)}
           </Col>
         </Row>
       </Container>
