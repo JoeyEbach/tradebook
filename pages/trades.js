@@ -24,7 +24,7 @@ export default function Trades() {
 
   useEffect(() => {
     getTradeCards();
-  }, [user, cards]);
+  }, [user.uid, cards]);
 
   return (
     <div className="tradesPage">

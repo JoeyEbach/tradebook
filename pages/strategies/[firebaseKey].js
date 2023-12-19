@@ -27,7 +27,7 @@ export default function ViewStrategy() {
 
   useEffect(() => {
     getStrategy();
-  }, [strategyDetails.trades]);
+  }, [strategyDetails, firebaseKey]);
 
   return (
     <div className="viewStratPg">

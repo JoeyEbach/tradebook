@@ -27,7 +27,7 @@ function StrategyCard({ strategyObj }) {
 
   useEffect(() => {
     numberOfTrades();
-  }, [strategyObj]);
+  }, [strategyObj, tradeNumber]);
 
   return (
     <Container>

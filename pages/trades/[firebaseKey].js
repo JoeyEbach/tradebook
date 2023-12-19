@@ -29,7 +29,7 @@ export default function ViewTrade() {
 
   useEffect(() => {
     getTrade();
-  }, [firebaseKey]);
+  }, [tradeDetails, firebaseKey]);
 
   return (
     <div className="viewTradePg">

@@ -27,7 +27,7 @@ export default function Strategies() {
 
   useEffect(() => {
     getStrategyCards();
-  }, [cards, user]);
+  }, [cards, user.uid]);
 
   return (
     <>

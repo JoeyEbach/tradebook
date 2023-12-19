@@ -31,7 +31,7 @@ function TradeCard({ tradeObj }) {
 
   useEffect(() => {
     getTradeImages();
-  }, [tradeObj]);
+  }, [tradeObj, tradeImages]);
 
   return (
     <Container>
