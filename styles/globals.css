@@ -336,8 +336,8 @@ a {
 }
 
 .tcHeader {
-  max-width: 800px;
-  margin-top: 40px;
+  max-width: 800px !important;
+  margin-top: 40px !important;
 }
 
 .tcListDiv {
