@@ -113,9 +113,9 @@ a {
 
 .icon {
   color: #8fc651;
-  width: 20px;
-  height: 30px;
-  object-fit: cover;
+  width: 20px !important;
+  height: 30px !important;
+  object-fit: cover !important;
   margin-right: 25px;
   :hover {
     color: goldenrod;
@@ -126,8 +126,8 @@ a {
 }
 
 .icon:hover {
-  width: 21px;
-  height: 32px;
+  width: 21px !important;
+  height: 32px !important;
 }
 
 .delIcon {
@@ -135,10 +135,10 @@ a {
 }
 
 .icons {
-  position: absolute;
-  right: 0px;
-  top: 15px;
-  max-width: 175px;
+  position: absolute !important;
+  right: 0px !important;
+  top: 15px !important;
+  max-width: 175px !important;
 }
 
 .snapShot {
@@ -218,7 +218,7 @@ a {
   display: flex !important;
   justify-content: center !important;
   max-width: 800px !important;
-  margin-top: 65px;
+  margin-top: 65px !important;
 } 
 
 .stratBtn {
@@ -262,13 +262,13 @@ a {
 }
 
 .stratCardList {
-  width: 800px;
+  width: 800px !important;
 }
 
 .sCardContainer {
-  display: flex;
-  justify-content: center;
-  max-width: 776px;
+  display: flex !important;
+  justify-content: center !important;
+  max-width: 776px !important;
 }
 
 .viewStratPg {
@@ -311,8 +311,8 @@ a {
   background-color: transparent !important;
   border: 2px solid #A1A3A1 !important;
   margin-bottom: 35px;
-  height: 150px;
-  width: 776px;
+  height: 150px !important;
+  width: 776px !important;
   padding: 0px;
 }
 
@@ -411,8 +411,8 @@ a {
   color: var(--text_color) !important;
   background-color: transparent !important;
   border: 2px solid #A1A3A1 !important;
-  margin-bottom: 35px;
-  height: 150px;
+  margin-bottom: 35px !important;
+  height: 150px !important;
 }
 
 .strategyCard:hover {
@@ -564,7 +564,7 @@ a {
 }
 
 .singleStratTrades {
-  max-width: 1800px;
+  max-width: 1800px !important;
 }
 
 .singleStratInfo {
@@ -572,7 +572,7 @@ a {
     border: 1px solid white;
     width: 800px !important;
     height: 200px;
-    margin-top: 100px;
+    margin-top: 100px !important;
     color: var(--text_color) !important;
     font-size: 14px;
     font-family: 'Oswald', sans-serif;
@@ -588,12 +588,12 @@ a {
 }
 
 .ssRules {
-  margin-top: 20px;
+  margin-top: 20px !important;
 }
 
 .dLoadBtn {
-  width: 800px;
-  margin-bottom: 15px;
+  width: 800px !important;
+  margin-bottom: 15px !important;
 }
 
 .winLoss {
@@ -796,8 +796,8 @@ a {
 
 .singleTradeHead {
   width: 800px !important;
-  margin-top: 100px;
-  color: var(--text_color);
+  margin-top: 100px !important;
+  color: var(--text_color) !important;
   font-family: 'Oswald', sans-serif;
 }
 
